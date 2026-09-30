@@ -1,0 +1,3300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mohamed Umar Hashan | Network Engineer Portfolio</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#011108;
+    color:#ffffff;
+    overflow-x:hidden;
+}
+
+:root{
+    --green:#00ff88;
+    --green-dark:#00c96b;
+    --bg:#011108;
+    --card:rgba(2,35,18,0.78);
+    --border:rgba(0,255,136,0.20);
+    --muted:#a9c8b7;
+}
+
+
+/* =========================================================
+   FULL SCREEN NETWORK BACKGROUND
+========================================================= */
+
+#networkCanvas{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
+    z-index:-10;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(0,255,136,0.08),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(0,200,100,0.06),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0,255,136,0.05),
+            transparent 30%
+        ),
+
+        #011108;
+}
+
+
+/* dark overlay */
+
+.network-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-9;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            rgba(1,15,8,0.28),
+            rgba(1,15,8,0.60)
+        );
+}
+
+
+/* =========================================================
+   NETWORK SCAN LINE
+========================================================= */
+
+.scan-line{
+
+    position:fixed;
+
+    left:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0,255,136,0.35),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(0,255,136,0.25);
+
+    z-index:-5;
+
+    animation:scan 8s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes scan{
+
+    0%{
+        top:-5%;
+    }
+
+    100%{
+        top:105%;
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    background:
+        rgba(1,17,8,0.75);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid rgba(0,255,136,0.12);
+}
+
+
+.nav{
+
+    max-width:1250px;
+
+    height:72px;
+
+    margin:auto;
+
+    padding:
+        0 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+
+.logo{
+
+    color:var(--green);
+
+    font-size:23px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 12px rgba(0,255,136,0.7);
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:28px;
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#d5eadc;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+
+.nav-links a:hover{
+
+    color:var(--green);
+
+    text-shadow:
+        0 0 10px rgba(0,255,136,0.7);
+}
+
+
+.menu-btn{
+
+    display:none;
+
+    color:var(--green);
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section{
+
+    position:relative;
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:
+        110px 25px;
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:55px;
+}
+
+
+.section-title h2{
+
+    font-size:
+        clamp(30px,4vw,42px);
+
+    margin-bottom:12px;
+}
+
+
+.section-title h2 span{
+
+    color:var(--green);
+}
+
+
+.section-title p{
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-top:100px;
+
+    position:relative;
+}
+
+
+/*
+   IMPORTANT:
+   Hero content is now centered over the
+   FULL-SCREEN network background.
+*/
+
+.hero-content{
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:5;
+
+    padding:45px 35px;
+
+    border:
+        1px solid
+        rgba(0,255,136,0.14);
+
+    border-radius:28px;
+
+    background:
+        rgba(1,18,9,0.56);
+
+    backdrop-filter:
+        blur(5px);
+
+    box-shadow:
+        0 0 80px
+        rgba(0,255,136,0.05);
+}
+
+
+/* =========================================================
+   HERO BADGE
+========================================================= */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+        9px 17px;
+
+    border:
+        1px solid
+        rgba(0,255,136,0.25);
+
+    border-radius:30px;
+
+    color:var(--green);
+
+    background:
+        rgba(0,255,136,0.05);
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:25px;
+}
+
+
+.badge::before{
+
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+
+    animation:blinkDot 1.2s infinite;
+}
+
+@keyframes blinkDot{
+
+    50%{
+        opacity:0.25;
+    }
+
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero h1{
+
+    font-size:
+        clamp(42px,6vw,75px);
+
+    line-height:1.05;
+
+    margin-bottom:20px;
+}
+
+
+.hero h1 span{
+
+    display:block;
+
+    color:var(--green);
+
+    text-shadow:
+
+        0 0 15px
+        rgba(0,255,136,0.45),
+
+        0 0 40px
+        rgba(0,255,136,0.15);
+}
+
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.typing{
+
+    min-height:35px;
+
+    color:var(--green);
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+
+.typing::after{
+
+    content:"|";
+
+    animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-description{
+
+    max-width:700px;
+
+    margin:
+        0 auto 30px;
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:13px;
+}
+
+
+.btn{
+
+    display:inline-block;
+
+    padding:
+        13px 22px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+
+.btn-primary{
+
+    color:#00180b;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 20px
+        rgba(0,255,136,0.2);
+}
+
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,136,0.5);
+}
+
+
+.btn-outline{
+
+    color:var(--green);
+
+    border:
+        1px solid
+        rgba(0,255,136,0.45);
+
+    background:
+        rgba(0,255,136,0.03);
+}
+
+
+.btn-outline:hover{
+
+    background:
+        rgba(0,255,136,0.10);
+
+    transform:translateY(-4px);
+}
+
+
+/* =========================================================
+   NETWORK STATUS BAR
+========================================================= */
+
+.network-status{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:30px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#83aa94;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    white-space:nowrap;
+
+    z-index:5;
+}
+
+
+.status-light{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 12px var(--green);
+
+    animation:blinkDot 1s infinite;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:30px;
+}
+
+
+.stat{
+
+    padding:25px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:16px;
+
+    background:
+        rgba(2,35,18,0.70);
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s;
+}
+
+
+.stat:hover{
+
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(0,255,136,0.5);
+
+    box-shadow:
+        0 0 30px
+        rgba(0,255,136,0.08);
+}
+
+
+.stat h3{
+
+    color:var(--green);
+
+    font-size:29px;
+
+    margin-bottom:8px;
+}
+
+
+.stat p{
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:25px;
+}
+
+
+.card{
+
+    padding:30px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:blur(12px);
+
+    transition:0.3s;
+}
+
+
+.card:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(0,255,136,0.45);
+}
+
+
+.card h3{
+
+    color:var(--green);
+
+    margin-bottom:15px;
+}
+
+
+.card p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+
+.skill-card{
+
+    padding:27px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    background:
+        rgba(2,35,18,0.72);
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s;
+}
+
+
+.skill-card:hover{
+
+    transform:
+        translateY(-7px);
+
+    border-color:var(--green);
+
+    box-shadow:
+        0 0 30px
+        rgba(0,255,136,0.08);
+}
+
+
+.skill-icon{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+}
+
+
+.skill-card h3{
+
+    margin-bottom:10px;
+}
+
+
+.skill-card p{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+
+.project{
+
+    padding:27px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(4,55,28,0.80),
+            rgba(1,25,12,0.80)
+        );
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s;
+}
+
+
+.project:hover{
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(0,255,136,0.55);
+}
+
+
+.project-number{
+
+    color:var(--green);
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+}
+
+
+.project h3{
+
+    margin-bottom:12px;
+}
+
+
+.project p{
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:20px;
+}
+
+
+.tag{
+
+    color:var(--green);
+
+    padding:
+        5px 9px;
+
+    font-size:10px;
+
+    border-radius:5px;
+
+    border:
+        1px solid
+        rgba(0,255,136,0.18);
+
+    background:
+        rgba(0,255,136,0.04);
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline{
+
+    max-width:850px;
+
+    margin:auto;
+
+    position:relative;
+}
+
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:20px;
+
+    top:0;
+
+    bottom:0;
+
+    width:2px;
+
+    background:
+        linear-gradient(
+            var(--green),
+            transparent
+        );
+}
+
+
+.timeline-item{
+
+    position:relative;
+
+    padding-left:60px;
+
+    margin-bottom:35px;
+}
+
+
+.timeline-dot{
+
+    position:absolute;
+
+    left:11px;
+
+    top:5px;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 18px
+        rgba(0,255,136,0.7);
+}
+
+
+.timeline-content{
+
+    padding:25px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:16px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:blur(10px);
+}
+
+
+.timeline-content h3{
+
+    color:var(--green);
+
+    margin-bottom:8px;
+}
+
+
+.timeline-content h4{
+
+    margin-bottom:10px;
+}
+
+
+.timeline-content p{
+
+    color:var(--muted);
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-box{
+
+    max-width:850px;
+
+    margin:auto;
+
+    padding:55px 30px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:25px;
+
+    background:
+        rgba(2,35,18,0.72);
+
+    backdrop-filter:blur(12px);
+}
+
+
+.contact-box h2{
+
+    font-size:38px;
+
+    margin-bottom:15px;
+}
+
+
+.contact-box h2 span{
+
+    color:var(--green);
+}
+
+
+.contact-box p{
+
+    max-width:600px;
+
+    margin:
+        0 auto 30px;
+
+    color:var(--muted);
+
+    line-height:1.8;
+}
+
+
+.contact-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+
+.contact-link{
+
+    color:var(--green);
+
+    text-decoration:none;
+
+    padding:
+        10px 17px;
+
+    border:
+        1px solid
+        rgba(0,255,136,0.25);
+
+    border-radius:8px;
+
+    transition:0.3s;
+}
+
+
+.contact-link:hover{
+
+    background:
+        rgba(0,255,136,0.08);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#6f9880;
+
+    font-size:13px;
+
+    border-top:
+        1px solid
+        rgba(0,255,136,0.10);
+
+    background:
+        rgba(1,12,6,0.8);
+}
+
+
+footer span{
+
+    color:var(--green);
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+#topBtn{
+
+    display:none;
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:45px;
+
+    height:45px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    color:#00180b;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    z-index:1000;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,255,136,0.4);
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .skills-grid,
+    .projects-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .menu-btn{
+
+        display:block;
+    }
+
+
+    .nav-links{
+
+        position:absolute;
+
+        top:72px;
+        left:0;
+
+        width:100%;
+
+        display:none;
+
+        flex-direction:column;
+
+        gap:0;
+
+        background:
+            rgba(1,17,8,0.97);
+
+        border-bottom:
+            1px solid
+            rgba(0,255,136,0.15);
+    }
+
+
+    .nav-links.active{
+
+        display:flex;
+    }
+
+
+    .nav-links li{
+
+        padding:15px 25px;
+
+        border-bottom:
+            1px solid
+            rgba(0,255,136,0.06);
+    }
+
+
+    .hero{
+
+        padding-top:110px;
+
+        padding-left:15px;
+
+        padding-right:15px;
+    }
+
+
+    .hero-content{
+
+        padding:
+            35px 20px;
+    }
+
+
+    .hero h1{
+
+        font-size:42px;
+    }
+
+
+    .typing{
+
+        font-size:18px;
+    }
+
+
+    .hero-description{
+
+        font-size:14px;
+    }
+
+
+    .network-status{
+
+        font-size:8px;
+
+        letter-spacing:1px;
+
+        bottom:15px;
+    }
+
+
+    .skills-grid,
+    .projects-grid,
+    .stats,
+    .about-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    section{
+
+        padding:
+            80px 18px;
+    }
+
+
+    .section-title h2{
+
+        font-size:31px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     FULL SCREEN NETWORK CANVAS
+===================================================== -->
+
+<canvas id="networkCanvas"></canvas>
+
+<div class="network-overlay"></div>
+
+<div class="scan-line"></div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<nav class="nav">
+
+    <div class="logo">
+        PORTFOLIO
+    </div>
+
+
+    <div class="menu-btn" id="menuBtn">
+        ☰
+    </div>
+
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#skills">Skills</a>
+        </li>
+
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+            <a href="#experience">Experience</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+
+<div class="hero-content">
+
+
+    <div class="badge">
+        NETWORK SYSTEM ONLINE
+    </div>
+
+
+    <h1>
+
+        Hi, I'm
+
+        <span>
+            Mohamed Umar Hashan
+        </span>
+
+    </h1>
+
+
+    <div
+        class="typing"
+        id="typing"
+    ></div>
+
+
+    <p class="hero-description">
+
+        CCNA-trained Computer Science Engineering graduate
+        focused on networking, routing, switching,
+        troubleshooting and network infrastructure.
+
+        I enjoy building practical Cisco network labs
+        and understanding how data travels between
+        devices across a network.
+
+    </p>
+
+
+    <div class="buttons">
+
+        <a
+            href="#projects"
+            class="btn btn-primary"
+        >
+            View Network Projects
+        </a>
+
+
+        <a
+            href="#contact"
+            class="btn btn-outline"
+        >
+            Contact Me
+        </a>
+
+
+        <a
+            href="IT Support Engineer  IT Support Technician  Network Support Engineer....pdf"
+            target="_blank"
+            class="btn btn-outline"
+        >
+            View Resume
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<div class="network-status">
+
+    <span class="status-light"></span>
+
+    LIVE NETWORK
+    &nbsp;|&nbsp;
+    PACKETS FLOWING
+    &nbsp;|&nbsp;
+    DEVICES ONLINE
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section>
+
+<div class="stats reveal">
+
+    <div class="stat">
+
+        <h3>
+            CCNA
+        </h3>
+
+        <p>
+            Training Completed
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            2025
+        </h3>
+
+        <p>
+            B.E. CSE Graduate
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            10+
+        </h3>
+
+        <p>
+            Networking Labs
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            6+
+        </h3>
+
+        <p>
+            Network Projects
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about">
+
+<div class="section-title reveal">
+
+    <h2>
+        About <span>Me</span>
+    </h2>
+
+    <p>
+        Building practical networking skills
+    </p>
+
+</div>
+
+
+<div class="about-grid">
+
+
+    <div class="card reveal">
+
+        <h3>
+            Who I Am
+        </h3>
+
+        <p>
+
+            I am a Computer Science and Engineering graduate
+            with CCNA training and a strong interest in
+            network engineering and IT infrastructure.
+
+            My learning focuses on Cisco networking,
+            routing, switching, VLANs, network security,
+            troubleshooting and network operations.
+
+        </p>
+
+    </div>
+
+
+    <div class="card reveal">
+
+        <h3>
+            My Networking Approach
+        </h3>
+
+        <p>
+
+            I prefer learning through practical labs.
+
+            I use Cisco Packet Tracer to build network
+            topologies, configure routers and switches,
+            troubleshoot connectivity and understand
+            how packets move through a network.
+
+        </p>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section id="skills">
+
+<div class="section-title reveal">
+
+    <h2>
+        Technical <span>Skills</span>
+    </h2>
+
+    <p>
+        Networking technologies and tools
+    </p>
+
+</div>
+
+
+<div class="skills-grid">
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            🌐
+        </div>
+
+        <h3>
+            Networking
+        </h3>
+
+        <p>
+
+            TCP/IP, OSI Model, IPv4, IPv6,
+            subnetting, CIDR, DHCP, DNS
+            and network troubleshooting.
+
+        </p>
+
+    </div>
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            🔀
+        </div>
+
+        <h3>
+            Switching
+        </h3>
+
+        <p>
+
+            VLAN, trunking, 802.1Q,
+            STP, EtherChannel, DTP,
+            access ports and trunk ports.
+
+        </p>
+
+    </div>
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            🛣️
+        </div>
+
+        <h3>
+            Routing
+        </h3>
+
+        <p>
+
+            Static routing, default routing,
+            recursive static routing,
+            floating routes and OSPF.
+
+        </p>
+
+    </div>
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            🔐
+        </div>
+
+        <h3>
+            Network Security
+        </h3>
+
+        <p>
+
+            ACL, NAT, SSH, Telnet,
+            access control and
+            basic network security.
+
+        </p>
+
+    </div>
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            🛠️
+        </div>
+
+        <h3>
+            Troubleshooting
+        </h3>
+
+        <p>
+
+            Ping, traceroute, show commands,
+            interface troubleshooting and
+            connectivity testing.
+
+        </p>
+
+    </div>
+
+
+    <div class="skill-card reveal">
+
+        <div class="skill-icon">
+            💻
+        </div>
+
+        <h3>
+            Tools
+        </h3>
+
+        <p>
+
+            Cisco Packet Tracer, GNS3,
+            EVE-NG, PuTTY, Wireshark,
+            Windows and Linux basics.
+
+        </p>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
+<section id="projects">
+
+<div class="section-title reveal">
+
+    <h2>
+        Network <span>Projects</span>
+    </h2>
+
+    <p>
+        Practical networking labs
+    </p>
+
+</div>
+
+
+<div class="projects-grid">
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 01
+        </div>
+
+        <h3>
+            VLAN & Inter-VLAN Routing
+        </h3>
+
+        <p>
+
+            Created multiple VLANs and configured
+            trunking and router-on-a-stick
+            inter-VLAN communication.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                VLAN
+            </span>
+
+            <span class="tag">
+                802.1Q
+            </span>
+
+            <span class="tag">
+                Router-on-a-Stick
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 02
+        </div>
+
+        <h3>
+            Static Routing Network
+        </h3>
+
+        <p>
+
+            Built a multi-router topology and
+            configured directly connected,
+            recursive, default and floating routes.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                Routing
+            </span>
+
+            <span class="tag">
+                IPv4
+            </span>
+
+            <span class="tag">
+                Cisco IOS
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 03
+        </div>
+
+        <h3>
+            ACL & NAT Configuration
+        </h3>
+
+        <p>
+
+            Configured ACL and NAT to control
+            network traffic and provide
+            address translation.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                ACL
+            </span>
+
+            <span class="tag">
+                NAT
+            </span>
+
+            <span class="tag">
+                Security
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 04
+        </div>
+
+        <h3>
+            STP Network Lab
+        </h3>
+
+        <p>
+
+            Practiced Spanning Tree Protocol,
+            root bridge selection, root ports,
+            designated ports and alternate ports.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                STP
+            </span>
+
+            <span class="tag">
+                Switching
+            </span>
+
+            <span class="tag">
+                Redundancy
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 05
+        </div>
+
+        <h3>
+            Secure SSH Access
+        </h3>
+
+        <p>
+
+            Configured secure remote management
+            using SSH and local authentication.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                SSH
+            </span>
+
+            <span class="tag">
+                Security
+            </span>
+
+            <span class="tag">
+                Cisco IOS
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="project reveal">
+
+        <div class="project-number">
+            PROJECT 06
+        </div>
+
+        <h3>
+            Network Troubleshooting Lab
+        </h3>
+
+        <p>
+
+            Diagnosed connectivity problems using
+            ping, traceroute, show commands,
+            interface checks and routing analysis.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                Troubleshooting
+            </span>
+
+            <span class="tag">
+                Ping
+            </span>
+
+            <span class="tag">
+                Traceroute
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     EDUCATION
+===================================================== -->
+
+<section id="experience">
+
+<div class="section-title reveal">
+
+    <h2>
+        Education & <span>Training</span>
+    </h2>
+
+    <p>
+        Academic background and training
+    </p>
+
+</div>
+
+
+<div class="timeline">
+
+
+    <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-content">
+
+            <h3>
+                CCNA Training
+            </h3>
+
+            <h4>
+                Cisco Networking
+            </h4>
+
+            <p>
+
+                Completed CCNA-focused networking training
+                covering switching, routing, IP addressing,
+                VLANs, STP, ACL, NAT, IPv6,
+                security and troubleshooting.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-content">
+
+            <h3>
+                B.E. Computer Science & Engineering
+            </h3>
+
+            <h4>
+                Mohamed Sathak Engineering College
+            </h4>
+
+            <p>
+
+                Completed Bachelor of Engineering
+                in Computer Science and Engineering.
+
+                2021 – 2025.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-content">
+
+            <h3>
+                Frontend Developer Internship
+            </h3>
+
+            <h4>
+                Pantech E-Learning
+            </h4>
+
+            <p>
+
+                Worked with HTML, CSS and JavaScript
+                while gaining practical experience
+                in frontend development.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact">
+
+<div class="contact-box reveal">
+
+    <h2>
+
+        Let's Build Something
+        <span>Connected</span>
+
+    </h2>
+
+
+    <p>
+
+        I am interested in entry-level opportunities
+        in Network Engineering, NOC, Network Support
+        and IT Support.
+
+        Feel free to connect with me.
+
+    </p>
+
+
+    <div class="contact-links">
+
+        <a
+            href="mailto:umar2003hashan@gmail.com"
+            class="contact-link"
+        >
+            ✉ Email
+        </a>
+
+
+        <a
+            href="https://www.linkedin.com/in/umarhashan05"
+            target="_blank"
+            class="contact-link"
+        >
+            LinkedIn
+        </a>
+
+
+        <a
+            href="https://github.com/Mohamed-Umar-Hashan"
+            target="_blank"
+            class="contact-link"
+        >
+            GitHub
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026
+    <span>
+        Mohamed Umar Hashan
+    </span>
+
+    | Network Engineer Portfolio
+
+</footer>
+
+
+<!-- =====================================================
+     TOP BUTTON
+===================================================== -->
+
+<button id="topBtn">
+    ↑
+</button>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener(
+    "click",
+    () => {
+
+        navLinks.classList.toggle(
+            "active"
+        );
+
+    }
+);
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            navLinks.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
+
+const typing =
+    document.getElementById("typing");
+
+
+const roles = [
+
+    "Network Engineer",
+    "NOC Engineer",
+    "Network Support Engineer",
+    "IT Support Engineer",
+    "CCNA Trained Professional"
+
+];
+
+
+let roleIndex = 0;
+
+let charIndex = 0;
+
+let deleting = false;
+
+
+function typeEffect(){
+
+    const role =
+        roles[roleIndex];
+
+
+    if(!deleting){
+
+        typing.textContent =
+            role.substring(
+                0,
+                charIndex + 1
+            );
+
+        charIndex++;
+
+
+        if(
+            charIndex >=
+            role.length
+        ){
+
+            deleting = true;
+
+            setTimeout(
+                typeEffect,
+                1500
+            );
+
+            return;
+        }
+
+    }else{
+
+        typing.textContent =
+            role.substring(
+                0,
+                charIndex - 1
+            );
+
+        charIndex--;
+
+
+        if(charIndex <= 0){
+
+            charIndex = 0;
+
+            deleting = false;
+
+            roleIndex++;
+
+            if(
+                roleIndex >=
+                roles.length
+            ){
+
+                roleIndex = 0;
+            }
+
+        }
+
+    }
+
+
+    setTimeout(
+        typeEffect,
+        deleting ? 50 : 100
+    );
+
+}
+
+
+typeEffect();
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealItems =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+function reveal(){
+
+    const trigger =
+        window.innerHeight - 80;
+
+
+    revealItems.forEach(item => {
+
+        const top =
+            item.getBoundingClientRect()
+            .top;
+
+
+        if(top < trigger){
+
+            item.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    reveal
+);
+
+window.addEventListener(
+    "load",
+    reveal
+);
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const topBtn =
+    document.getElementById(
+        "topBtn"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if(
+            window.scrollY > 500
+        ){
+
+            topBtn.style.display =
+                "block";
+
+        }else{
+
+            topBtn.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+topBtn.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================================
+   NETWORK CANVAS
+========================================================= */
+
+const canvas =
+    document.getElementById(
+        "networkCanvas"
+    );
+
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let W =
+    window.innerWidth;
+
+let H =
+    window.innerHeight;
+
+
+canvas.width = W;
+canvas.height = H;
+
+
+/* =========================================================
+   MOUSE
+========================================================= */
+
+let mouse = {
+
+    x:null,
+    y:null
+
+};
+
+
+window.addEventListener(
+    "mousemove",
+    event => {
+
+        mouse.x =
+            event.clientX;
+
+        mouse.y =
+            event.clientY;
+
+    }
+);
+
+
+window.addEventListener(
+    "mouseleave",
+    () => {
+
+        mouse.x = null;
+
+        mouse.y = null;
+
+    }
+);
+
+
+/* =========================================================
+   DEVICE TYPES
+========================================================= */
+
+const deviceTypes = [
+
+    "ROUTER",
+    "SWITCH",
+    "SERVER",
+    "PC",
+    "AP"
+
+];
+
+
+/* =========================================================
+   DEVICE ICONS
+========================================================= */
+
+const deviceIcons = {
+
+    ROUTER:"◆",
+
+    SWITCH:"▣",
+
+    SERVER:"▤",
+
+    PC:"▱",
+
+    AP:"⌁"
+
+};
+
+
+/* =========================================================
+   CREATE NETWORK DEVICES
+========================================================= */
+
+const devices = [];
+
+
+function createDevices(){
+
+    devices.length = 0;
+
+
+    /*
+       Devices are deliberately distributed
+       across the FULL SCREEN.
+    */
+
+    const positions = [
+
+        [0.08,0.20,"ROUTER"],
+
+        [0.28,0.12,"SWITCH"],
+
+        [0.52,0.18,"AP"],
+
+        [0.76,0.12,"SERVER"],
+
+        [0.91,0.25,"PC"],
+
+        [0.18,0.48,"PC"],
+
+        [0.43,0.43,"ROUTER"],
+
+        [0.68,0.42,"SWITCH"],
+
+        [0.88,0.52,"SERVER"],
+
+        [0.10,0.76,"SWITCH"],
+
+        [0.31,0.78,"PC"],
+
+        [0.54,0.70,"AP"],
+
+        [0.76,0.77,"PC"],
+
+        [0.93,0.78,"ROUTER"]
+
+    ];
+
+
+    positions.forEach(
+        position => {
+
+            devices.push({
+
+                x:
+                    position[0] * W,
+
+                y:
+                    position[1] * H,
+
+                type:
+                    position[2],
+
+                pulse:
+                    Math.random() *
+                    Math.PI * 2
+
+            });
+
+        }
+    );
+
+}
+
+
+createDevices();
+
+
+/* =========================================================
+   PACKETS
+========================================================= */
+
+const packets = [];
+
+
+function createPacket(){
+
+    if(
+        devices.length < 2
+    ){
+
+        return;
+    }
+
+
+    let fromIndex =
+        Math.floor(
+            Math.random() *
+            devices.length
+        );
+
+
+    let toIndex =
+        Math.floor(
+            Math.random() *
+            devices.length
+        );
+
+
+    while(
+        toIndex === fromIndex
+    ){
+
+        toIndex =
+            Math.floor(
+                Math.random() *
+                devices.length
+            );
+
+    }
+
+
+    packets.push({
+
+        from:
+            fromIndex,
+
+        to:
+            toIndex,
+
+        progress:0,
+
+        speed:
+            0.002 +
+            Math.random() * 0.004,
+
+        size:
+            2 +
+            Math.random() * 2
+
+    });
+
+}
+
+
+for(
+    let i=0;
+    i<15;
+    i++
+){
+
+    createPacket();
+
+}
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        W =
+            window.innerWidth;
+
+        H =
+            window.innerHeight;
+
+
+        canvas.width = W;
+
+        canvas.height = H;
+
+
+        createDevices();
+
+    }
+);
+
+
+/* =========================================================
+   DRAW DEVICE
+========================================================= */
+
+function drawDevice(
+    device
+){
+
+    const pulse =
+        Math.sin(
+            Date.now() / 500 +
+            device.pulse
+        );
+
+
+    const radius =
+        15 +
+        pulse * 2;
+
+
+    /*
+       Glow
+    */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        device.x,
+        device.y,
+        radius + 10,
+        0,
+        Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+        "rgba(0,255,136,0.035)";
+
+    ctx.fill();
+
+
+    /*
+       Device box
+    */
+
+    ctx.beginPath();
+
+    ctx.roundRect(
+        device.x - 20,
+        device.y - 20,
+        40,
+        40,
+        8
+    );
+
+
+    ctx.fillStyle =
+        "rgba(1,30,15,0.90)";
+
+    ctx.fill();
+
+
+    ctx.strokeStyle =
+        "rgba(0,255,136,0.55)";
+
+    ctx.lineWidth = 1;
+
+    ctx.stroke();
+
+
+    /*
+       Icon
+    */
+
+    ctx.font =
+        "bold 16px Arial";
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillStyle =
+        "#00ff88";
+
+
+    ctx.shadowBlur = 10;
+
+    ctx.shadowColor =
+        "#00ff88";
+
+
+    ctx.fillText(
+
+        deviceIcons[
+            device.type
+        ],
+
+        device.x,
+
+        device.y
+
+    );
+
+
+    ctx.shadowBlur = 0;
+
+
+    /*
+       Label
+    */
+
+    ctx.font =
+        "9px Arial";
+
+    ctx.fillStyle =
+        "rgba(150,210,175,0.8)";
+
+
+    ctx.fillText(
+
+        device.type,
+
+        device.x,
+
+        device.y + 32
+
+    );
+
+}
+
+
+/* =========================================================
+   DRAW CONNECTION
+========================================================= */
+
+function drawConnection(
+    a,
+    b
+){
+
+    const dx =
+        a.x - b.x;
+
+    const dy =
+        a.y - b.y;
+
+
+    const distance =
+        Math.sqrt(
+            dx * dx +
+            dy * dy
+        );
+
+
+    if(
+        distance > 330
+    ){
+
+        return;
+    }
+
+
+    const opacity =
+        1 -
+        distance / 330;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        a.x,
+        a.y
+    );
+
+
+    ctx.lineTo(
+        b.x,
+        b.y
+    );
+
+
+    ctx.strokeStyle =
+        `rgba(
+            0,
+            255,
+            136,
+            ${opacity * 0.22}
+        )`;
+
+
+    ctx.lineWidth = 1;
+
+
+    ctx.setLineDash([
+        5,
+        8
+    ]);
+
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+}
+
+
+/* =========================================================
+   DRAW PACKET
+========================================================= */
+
+function drawPacket(
+    packet
+){
+
+    const a =
+        devices[
+            packet.from
+        ];
+
+    const b =
+        devices[
+            packet.to
+        ];
+
+
+    const x =
+        a.x +
+        (b.x - a.x) *
+        packet.progress;
+
+
+    const y =
+        a.y +
+        (b.y - a.y) *
+        packet.progress;
+
+
+    /*
+       Packet glow
+    */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        packet.size + 6,
+        0,
+        Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+        "rgba(0,255,136,0.08)";
+
+    ctx.fill();
+
+
+    /*
+       Packet
+    */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        packet.size,
+        0,
+        Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+        "#ffffff";
+
+
+    ctx.shadowBlur =
+        15;
+
+    ctx.shadowColor =
+        "#00ff88";
+
+
+    ctx.fill();
+
+
+    ctx.shadowBlur = 0;
+
+
+    packet.progress +=
+        packet.speed;
+
+
+    if(
+        packet.progress >= 1
+    ){
+
+        packet.from =
+            packet.to;
+
+
+        let next =
+            Math.floor(
+                Math.random() *
+                devices.length
+            );
+
+
+        while(
+            next === packet.from
+        ){
+
+            next =
+                Math.floor(
+                    Math.random() *
+                    devices.length
+                );
+
+        }
+
+
+        packet.to =
+            next;
+
+        packet.progress = 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOUSE CONNECTION
+========================================================= */
+
+function drawMouseConnection(){
+
+    if(
+        mouse.x === null ||
+        mouse.y === null
+    ){
+
+        return;
+    }
+
+
+    devices.forEach(
+        device => {
+
+            const dx =
+                device.x -
+                mouse.x;
+
+            const dy =
+                device.y -
+                mouse.y;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            if(
+                distance < 200
+            ){
+
+                ctx.beginPath();
+
+
+                ctx.moveTo(
+                    device.x,
+                    device.y
+                );
+
+
+                ctx.lineTo(
+                    mouse.x,
+                    mouse.y
+                );
+
+
+                ctx.strokeStyle =
+                    `rgba(
+                        0,
+                        255,
+                        136,
+                        ${
+                            (1 -
+                            distance / 200)
+                            * 0.35
+                        }
+                    )`;
+
+
+                ctx.lineWidth = 1;
+
+
+                ctx.stroke();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ANIMATION LOOP
+========================================================= */
+
+function animate(){
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    /*
+       Connections
+    */
+
+    for(
+        let i=0;
+        i<devices.length;
+        i++
+    ){
+
+        for(
+            let j=i+1;
+            j<devices.length;
+            j++
+        ){
+
+            drawConnection(
+                devices[i],
+                devices[j]
+            );
+
+        }
+
+    }
+
+
+    /*
+       Mouse
+    */
+
+    drawMouseConnection();
+
+
+    /*
+       Packets
+    */
+
+    packets.forEach(
+        packet => {
+
+            drawPacket(packet);
+
+        }
+    );
+
+
+    /*
+       Devices
+    */
+
+    devices.forEach(
+        device => {
+
+            drawDevice(device);
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+animate();
+
+
+/* =========================================================
+   PERIODIC PACKET CREATION
+========================================================= */
+
+setInterval(
+    () => {
+
+        if(
+            packets.length < 25
+        ){
+
+            createPacket();
+
+        }
+
+    },
+    600
+);
+
+</script>
+
+</body>
+</html>
